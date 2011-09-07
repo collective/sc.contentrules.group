@@ -63,6 +63,7 @@ class GroupActionExecutor(object):
             self.error(obj, _(u'A group with the same id already exists.'))
             return False
         grouptitle = self.element.grouptitle
+        grouptitle = interpolator(grouptitle).strip()
 
         try:
             gt.addGroup(groupid, title=grouptitle, roles=roles)

@@ -32,7 +32,7 @@ class TestGroupAction(TestCase):
         self.portal.invokeFactory('Folder', 'folder')
         self.folder = self.portal['folder']
         self.gt = self.portal.portal_groups
-        gt.addGroup('Fav Customer', title='Our Fav Customer', roles=())
+        self.gt.addGroup('Fav Customer', title='Our Fav Customer', roles=())
 
     def testRegistered(self):
         element = getUtility(IRuleAction,
@@ -55,13 +55,13 @@ class TestGroupAction(TestCase):
                                    name=element.addview)
 
         addview.createAndAdd(data={'groupid': 'Users',
-                                   'groupname': 'Users of this portal',
+                                   'grouptitle': 'Users of this portal',
                                    'roles': set(['Reader', ])})
 
         e = rule.actions[0]
         self.failUnless(isinstance(e, GroupAction))
         self.assertEquals('Users', e.groupid)
-        self.assertEquals('Users of this portal', e.groupname)
+        self.assertEquals('Users of this portal', e.grouptitle)
         self.assertEquals(set(['Reader', ]), e.roles)
 
     def testInvokeEditView(self):
@@ -75,7 +75,7 @@ class TestGroupAction(TestCase):
     def testExecute(self):
         e = GroupAction()
         e.groupid = 'New Group'
-        e.groupname = 'Newly Created Group'
+        e.grouptitle = 'Newly Created Group'
         e.roles = set(['Member', ])
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
@@ -90,7 +90,7 @@ class TestGroupAction(TestCase):
         folder = self.portal['customer']
         e = GroupAction()
         e.groupid = '${title}'
-        e.groupname = 'Group of Contributors for folder ${title}'
+        e.grouptitle = 'Group of Contributors for folder ${title}'
         e.roles = set(['Contributor', ])
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(folder)),
@@ -99,14 +99,14 @@ class TestGroupAction(TestCase):
         group = self.gt.getGroupById(folder.Title())
         self.failUnless(group)
         self.failUnless(group.getGroupId()==folder.Title())
-        groupname = 'Group of Contributors for folder %s' % folder.Title()
-        self.failUnless(group.getGroupName()==groupname)
+        grouptitle = 'Group of Contributors for folder %s' % folder.Title()
+        self.failUnless(group.getGroupTitleOrName()==grouptitle)
 
 
     def testExecuteWithError(self):
         e = GroupAction()
         e.groupid = 'Fav Customer'
-        e.groupname = 'Our Fav Customer'
+        e.grouptitle = 'Our Fav Customer'
         e.roles = set(['Member', ])
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
