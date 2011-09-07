@@ -1,0 +1,42 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.plone.org/zcml"
+    i18n_domain="sc.contentrules.group">
+    
+    <include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
+    <include package="plone.contentrules" file="meta.zcml" />
+    <include package="plone.app.contentrules" />
+
+    <!-- Apply local role action -->
+
+    <adapter factory=".action.GroupActionExecutor" />
+    
+    <browser:page 
+      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+      name="sc.contentrules.group.CreateGroup"
+      class=".action.GroupAddForm"
+      permission="cmf.ManagePortal"
+      />
+    
+    <browser:page 
+      for="sc.contentrules.group.interfaces.IGroupAction"
+      name="edit"
+      class=".action.GroupEditForm"
+      permission="cmf.ManagePortal"
+      />
+         
+    <plone:ruleAction
+        name="sc.contentrules.group.CreateGroup"
+        title="Create a group"
+        description="A content rule action that creates a group based on a object."
+        for="OFS.interfaces.IObjectManager"
+        event="zope.component.interfaces.IObjectEvent"
+        addview="sc.contentrules.group.CreateGroup"
+        editview="edit"
+        schema=".interfaces.IGroupAction"
+        factory=".action.GroupAction"
+        />
+
+</configure>
