@@ -27,11 +27,12 @@ setup(name='sc.contentrules.group',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
-          # -*- Extra requirements: -*-
-      ],
+        'setuptools',
+        ],
+      extras_require={
+        'test': ['plone.app.testing'],
+        },
       entry_points="""
-      # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
       """,

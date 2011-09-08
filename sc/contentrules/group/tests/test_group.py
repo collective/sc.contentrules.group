@@ -1,21 +1,24 @@
 # -*- coding:utf-8 -*-
-from zope.interface import implements
-from zope.component import getUtility, getMultiAdapter
+
+import unittest2 as unittest
+
 from OFS.interfaces import IObjectManager
+
+from zope.component import getUtility, getMultiAdapter
+from zope.component.interfaces import IObjectEvent
+from zope.interface import implements
+
+from plone.app.contentrules.rule import Rule
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+
 from plone.contentrules.engine.interfaces import IRuleStorage
 from plone.contentrules.rule.interfaces import IRuleAction
 from plone.contentrules.rule.interfaces import IExecutable
 
 from sc.contentrules.group.action import GroupAction
 from sc.contentrules.group.action import GroupEditForm
-
-from plone.app.contentrules.rule import Rule
-
-from sc.contentrules.group.tests.base import TestCase
-
-from zope.component.interfaces import IObjectEvent
-
-from Products.PloneTestCase.setup import default_user
+from sc.contentrules.group.testing import INTEGRATION_TESTING
 
 
 class DummyEvent(object):
@@ -25,12 +28,21 @@ class DummyEvent(object):
         self.object = object
 
 
-class TestGroupAction(TestCase):
+class TestGroupAction(unittest.TestCase):
+
+    layer = INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Folder', 'test-folder')
+        #setRoles(self.portal, TEST_USER_ID, ['Member'])
+        self.folder = self.portal['test-folder']
 
     def afterSetUp(self):
-        self.loginAsPortalOwner()
-        self.portal.invokeFactory('Folder', 'folder')
-        self.folder = self.portal['folder']
+        #self.loginAsPortalOwner()
+        #self.portal.invokeFactory('Folder', 'folder')
+        #self.folder = self.portal['folder']
         self.gt = self.portal.portal_groups
         self.gt.addGroup('Fav Customer', title='Our Fav Customer', roles=())
 
@@ -69,7 +81,7 @@ class TestGroupAction(TestCase):
                              name='sc.contentrules.group.CreateGroup')
         e = GroupAction()
         editview = getMultiAdapter((e, self.folder.REQUEST),
-                                    name=element.editview)
+                                   name=element.editview)
         self.failUnless(isinstance(editview, GroupEditForm))
 
     def testExecute(self):
@@ -94,14 +106,13 @@ class TestGroupAction(TestCase):
         e.roles = set(['Contributor', ])
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(folder)),
-                              IExecutable)
+                             IExecutable)
         self.assertEquals(True, ex())
         group = self.gt.getGroupById(folder.Title())
         self.failUnless(group)
-        self.failUnless(group.getGroupId()==folder.Title())
+        self.failUnless(group.getGroupId() == folder.Title())
         grouptitle = 'Group of Contributors for folder %s' % folder.Title()
-        self.failUnless(group.getGroupTitleOrName()==grouptitle)
-
+        self.failUnless(group.getGroupTitleOrName() == grouptitle)
 
     def testExecuteWithError(self):
         e = GroupAction()
@@ -110,13 +121,10 @@ class TestGroupAction(TestCase):
         e.roles = set(['Member', ])
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
-                              IExecutable)
+                             IExecutable)
 
         self.assertEquals(False, ex())
 
 
 def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestGroupAction))
-    return suite
+    return unittest.defaultTestLoader.loadTestsFromName(__name__)
