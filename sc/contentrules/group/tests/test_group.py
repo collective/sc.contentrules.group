@@ -38,11 +38,6 @@ class TestGroupAction(unittest.TestCase):
         self.portal.invokeFactory('Folder', 'test-folder')
         #setRoles(self.portal, TEST_USER_ID, ['Member'])
         self.folder = self.portal['test-folder']
-
-    def afterSetUp(self):
-        #self.loginAsPortalOwner()
-        #self.portal.invokeFactory('Folder', 'folder')
-        #self.folder = self.portal['folder']
         self.gt = self.portal.portal_groups
         self.gt.addGroup('Fav Customer', title='Our Fav Customer', roles=())
 
