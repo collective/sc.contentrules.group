@@ -28,6 +28,7 @@ setup(name='sc.contentrules.group',
       zip_safe=False,
       install_requires=[
         'setuptools',
+        'plone.stringinterp',
         ],
       extras_require={
         'test': ['plone.app.testing'],
