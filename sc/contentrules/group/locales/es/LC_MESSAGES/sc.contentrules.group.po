@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.contentrules.group\n"
-"POT-Creation-Date: 2011-09-07 20:14+0000\n"
+"POT-Creation-Date: 2011-09-15 13:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,15 +24,15 @@ msgstr "Ya existe un grupo con el mismo ID."
 msgid "A title for the new group."
 msgstr "Título del nuevo grupo"
 
-#: ../action.py:90
+#: ../action.py:91
 msgid "Add an action to create a group"
 msgstr "Agregue una acción para crear un grupo"
 
-#: ../action.py:91
+#: ../action.py:92
 msgid "An action that creates a group based on                       an object."
 msgstr "Una acción que crea un grupo con base en un objeto."
 
-#: ../action.py:93
+#: ../action.py:94
 msgid "Configure element"
 msgstr "Configurar elemento"
 
@@ -40,7 +40,7 @@ msgstr "Configurar elemento"
 msgid "Create a group ${groupid} with roles ${roles}"
 msgstr "Crear un grupo ${groupid} con los roles ${roles}"
 
-#: ../action.py:105
+#: ../action.py:106
 msgid "Edit an action to create a group"
 msgstr "Editar una acción para crear un grupo"
 
@@ -64,7 +64,7 @@ msgstr "Roles"
 msgid "Roles to be assigned to this group."
 msgstr "Roles que se le asignarán a este grupo."
 
-#: ../action.py:81
+#: ../action.py:82
 msgid "Unable to create group with id ${groupid}: ${error}"
 msgstr "No se pudo crear el grupo con el ID ${groupid}: ${error}"
 

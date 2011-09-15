@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-09-07 20:14+0000\n"
+"POT-Creation-Date: 2011-09-15 13:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,15 +22,15 @@ msgstr ""
 msgid "A title for the new group."
 msgstr ""
 
-#: ../action.py:90
+#: ../action.py:91
 msgid "Add an action to create a group"
 msgstr ""
 
-#: ../action.py:91
+#: ../action.py:92
 msgid "An action that creates a group based on                       an object."
 msgstr ""
 
-#: ../action.py:93
+#: ../action.py:94
 msgid "Configure element"
 msgstr ""
 
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Create a group ${groupid} with roles ${roles}"
 msgstr ""
 
-#: ../action.py:105
+#: ../action.py:106
 msgid "Edit an action to create a group"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgstr ""
 msgid "Roles to be assigned to this group."
 msgstr ""
 
-#: ../action.py:81
+#: ../action.py:82
 msgid "Unable to create group with id ${groupid}: ${error}"
 msgstr ""
 
