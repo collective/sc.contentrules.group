@@ -108,7 +108,7 @@ class TestGroupAction(unittest.TestCase):
                                            'source_groups')
         # Execute action
         e = GroupAction()
-        e.groupid = 'New Group'
+        e.groupid = 'Fav Customer'
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
                              IExecutable)
