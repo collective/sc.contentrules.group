@@ -11,6 +11,10 @@ Overview
 **Content Rules: User group actions** (sc.contentrules.group) package provides
 content rule actions to create or remove an user group.
 
+This package is tested with Travis CI:
+
+.. image:: https://secure.travis-ci.org/simplesconsultoria/sc.contentrules.group.png
+    :target: http://travis-ci.org/simplesconsultoria/sc.contentrules.group
 
 Use case
 ---------
