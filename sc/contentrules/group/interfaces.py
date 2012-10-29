@@ -7,7 +7,7 @@ from zope.schema import TextLine
 from sc.contentrules.group import MessageFactory as _
 
 
-class IGroupAction(Interface):
+class ICreateGroupAction(Interface):
     """An action that creates an user group
     """
 
@@ -30,3 +30,15 @@ class IGroupAction(Interface):
                               u"user group created by this action."),
                 required=True,
                 value_type=Choice(vocabulary='plone.app.vocabularies.Roles'))
+
+
+class IRemoveGroupAction(Interface):
+    """An action that removes an existing user group
+    """
+
+    groupid = TextLine(title=_(u"Group Id"),
+                       description=_(u"Please inform the id for the user"
+                                     u"group to be removed by this action."
+                                     u" Use  ${title} in this field to use "
+                                     u"the content title in the Group Id."),
+                       required=True)
