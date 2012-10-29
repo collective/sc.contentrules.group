@@ -97,7 +97,29 @@ class TestGroupAction(unittest.TestCase):
         group = self.gt.getGroupById(folder.Title())
         self.failIf(group)
 
+    def testExecuteWithoutGroupTool(self):
+        ''' Test what happens if portal_groups is not available '''
+        # Remove portal_tool
+        self.portal._delOb('portal_groups')
+
+        # Execute action
+        e = GroupAction()
+        e.groupid = 'New Group'
+        e.grouptitle = 'Newly Created Group'
+        e.roles = set(['Member', ])
+
+        ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
+                             IExecutable)
+        self.assertEquals(False, ex())
+
+    def testActionSummary(self):
+        e = GroupAction()
+        e.groupid = '${title}'
+        summary = u"Remove an user group with id ${groupid}"
+        self.assertEquals(summary, e.summary)
+
     def testExecuteWithError(self):
+        ''' Try to remove a non existent group'''
         e = GroupAction()
         e.groupid = 'Non Existent Group'
 

@@ -109,7 +109,31 @@ class TestGroupAction(unittest.TestCase):
         grouptitle = 'Group of Contributors for folder %s' % folder.Title()
         self.failUnless(group.getGroupTitleOrName() == grouptitle)
 
+    def testActionSummary(self):
+        e = GroupAction()
+        e.groupid = '${title}'
+        e.grouptitle = 'Group of Contributors for folder ${title}'
+        e.roles = set(['Contributor', ])
+        summary = u"Create an user group ${groupid} with roles ${roles}"
+        self.assertEquals(summary, e.summary)
+
+    def testExecuteWithoutGroupTool(self):
+        ''' Test what happens if portal_groups is not available '''
+        # Remove portal_tool
+        self.portal._delOb('portal_groups')
+
+        # Execute action
+        e = GroupAction()
+        e.groupid = 'New Group'
+        e.grouptitle = 'Newly Created Group'
+        e.roles = set(['Member', ])
+
+        ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
+                             IExecutable)
+        self.assertEquals(False, ex())
+
     def testExecuteWithError(self):
+        ''' Already a group with the same id '''
         e = GroupAction()
         e.groupid = 'Fav Customer'
         e.grouptitle = 'Our Fav Customer'
