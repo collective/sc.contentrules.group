@@ -2,14 +2,14 @@
 from setuptools import setup, find_packages
 import os
 
-version = open(os.path.join("sc", "contentrules", "group", "version.txt")).read().strip()
+version = open(os.path.join("sc", "contentrules",
+                            "group", "version.txt")).read().strip()
 
 setup(name='sc.contentrules.group',
       version=version,
       description="Plone content rule to create a group based on a content",
-      long_description=open(os.path.join("sc", "contentrules", "group", "README.txt")).read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
+      long_description=(open("README.txt").read() + "\n" +
+                        open(os.path.join("docs", "HISTORY.txt")).read()),
       classifiers=[
         "Framework :: Plone",
         "Framework :: Zope2",
@@ -27,9 +27,9 @@ setup(name='sc.contentrules.group',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-        'setuptools',
-        'plone.stringinterp',
-        ],
+          'setuptools',
+          'plone.stringinterp',
+      ],
       extras_require={
         'test': ['plone.app.testing'],
         },
