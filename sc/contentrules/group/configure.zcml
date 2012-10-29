@@ -4,42 +4,73 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:zcml="http://namespaces.plone.org/zcml"
     i18n_domain="sc.contentrules.group">
-    
+
     <include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
-    
+
     <includeDependencies package="." />
-    
+
     <include package="plone.contentrules" file="meta.zcml" />
     <include package="plone.app.contentrules" />
 
-    <!-- Apply local role action -->
+    <!-- Create user group action -->
 
-    <adapter factory=".action.GroupActionExecutor" />
-    
-    <browser:page 
+    <adapter factory=".actions.create.GroupActionExecutor" />
+
+    <browser:page
       for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
       name="sc.contentrules.group.CreateGroup"
-      class=".action.GroupAddForm"
+      class=".actions.create.GroupAddForm"
       permission="cmf.ManagePortal"
       />
-    
-    <browser:page 
-      for="sc.contentrules.group.interfaces.IGroupAction"
+
+    <browser:page
+      for="sc.contentrules.group.interfaces.ICreateGroupAction"
       name="edit"
-      class=".action.GroupEditForm"
+      class=".actions.create.GroupEditForm"
       permission="cmf.ManagePortal"
       />
-         
+
     <plone:ruleAction
         name="sc.contentrules.group.CreateGroup"
-        title="Create a group"
-        description="A content rule action that creates a group based on a object."
+        title="Create an user group"
+        description="A content rule action that creates an user group."
         for="OFS.interfaces.IObjectManager"
         event="zope.component.interfaces.IObjectEvent"
         addview="sc.contentrules.group.CreateGroup"
         editview="edit"
-        schema=".interfaces.IGroupAction"
-        factory=".action.GroupAction"
+        schema=".interfaces.ICreateGroupAction"
+        factory=".actions.create.GroupAction"
         />
+
+    <!-- Remove user group action -->
+
+    <adapter factory=".actions.remove.GroupActionExecutor" />
+
+    <browser:page
+      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+      name="sc.contentrules.group.RemoveGroup"
+      class=".actions.remove.GroupAddForm"
+      permission="cmf.ManagePortal"
+      />
+
+    <browser:page
+      for="sc.contentrules.group.interfaces.IRemoveGroupAction"
+      name="edit"
+      class=".actions.remove.GroupEditForm"
+      permission="cmf.ManagePortal"
+      />
+
+    <plone:ruleAction
+        name="sc.contentrules.group.RemoveGroup"
+        title="Remove an user group"
+        description="A content rule action that removes an existing user group."
+        for="OFS.interfaces.IObjectManager"
+        event="zope.component.interfaces.IObjectEvent"
+        addview="sc.contentrules.group.RemoveGroup"
+        editview="edit"
+        schema=".interfaces.IRemoveGroupAction"
+        factory=".actions.remove.GroupAction"
+        />
+
 
 </configure>
