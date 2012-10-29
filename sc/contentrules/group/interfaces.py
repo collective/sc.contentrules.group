@@ -8,7 +8,7 @@ from sc.contentrules.group import MessageFactory as _
 
 
 class IGroupAction(Interface):
-    """An action used to create a group
+    """An action that creates an user group
     """
 
     groupid = TextLine(title=_(u"Group Id"),
