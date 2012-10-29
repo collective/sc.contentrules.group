@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = open(os.path.join("sc", "contentrules",
+version = open(os.path.join("src", "sc", "contentrules",
                             "group", "version.txt")).read().strip()
 
 long_description = (open("README.txt").read() + "\n" +
