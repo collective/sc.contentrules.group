@@ -5,11 +5,15 @@ import os
 version = open(os.path.join("sc", "contentrules",
                             "group", "version.txt")).read().strip()
 
+long_description = (open("README.txt").read() + "\n" +
+                    open(os.path.join("docs", "INSTALL.txt")).read() + "\n" +
+                    open(os.path.join("docs", "CREDITS.txt")).read() + "\n" +
+                    open(os.path.join("docs", "HISTORY.txt")).read())
+
 setup(name='sc.contentrules.group',
       version=version,
       description="Plone content rule to create a group based on a content",
-      long_description=(open("README.txt").read() + "\n" +
-                        open(os.path.join("docs", "HISTORY.txt")).read()),
+      long_description=long_description,
       classifiers=[
           "Development Status :: 5 - Production/Stable",
           "Environment :: Web Environment",
