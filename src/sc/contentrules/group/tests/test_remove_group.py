@@ -16,6 +16,8 @@ from plone.contentrules.engine.interfaces import IRuleStorage
 from plone.contentrules.rule.interfaces import IRuleAction
 from plone.contentrules.rule.interfaces import IExecutable
 
+from Products.CMFCore.utils import getToolByName
+
 from sc.contentrules.group.actions.remove import GroupAction
 from sc.contentrules.group.actions.remove import GroupEditForm
 from sc.contentrules.group.testing import INTEGRATION_TESTING
@@ -97,6 +99,21 @@ class TestGroupAction(unittest.TestCase):
         group = self.gt.getGroupById(folder.Title())
         self.failIf(group)
 
+    def testExecuteWithoutGroupManagementPlugin(self):
+        ''' No group management plugins enabled '''
+        from Products.PlonePAS.interfaces.group import IGroupManagement
+        # Disable group management plugins
+        acl_users = getToolByName(self.portal, 'acl_users')
+        acl_users.plugins.deactivatePlugin(IGroupManagement,
+                                           'source_groups')
+        # Execute action
+        e = GroupAction()
+        e.groupid = 'New Group'
+
+        ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
+                             IExecutable)
+        self.assertEquals(False, ex())
+
     def testExecuteWithoutGroupTool(self):
         ''' Test what happens if portal_groups is not available '''
         # Remove portal_tool
@@ -105,8 +122,6 @@ class TestGroupAction(unittest.TestCase):
         # Execute action
         e = GroupAction()
         e.groupid = 'New Group'
-        e.grouptitle = 'Newly Created Group'
-        e.roles = set(['Member', ])
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
                              IExecutable)
