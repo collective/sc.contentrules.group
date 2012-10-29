@@ -15,7 +15,7 @@ content rule actions to create or remove an user group.
 Use case
 ---------
 
-A college with collaborators
+A college with descentralized content management and groups dedicated to research. Each group should manage its own content.
 
 In their portal they want to host areas for each research group they sponsor.
 All those areas will be under the folder /research/. A research group called
