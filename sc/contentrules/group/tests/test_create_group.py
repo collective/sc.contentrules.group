@@ -16,8 +16,8 @@ from plone.contentrules.engine.interfaces import IRuleStorage
 from plone.contentrules.rule.interfaces import IRuleAction
 from plone.contentrules.rule.interfaces import IExecutable
 
-from sc.contentrules.group.action import GroupAction
-from sc.contentrules.group.action import GroupEditForm
+from sc.contentrules.group.actions.create import GroupAction
+from sc.contentrules.group.actions.create import GroupEditForm
 from sc.contentrules.group.testing import INTEGRATION_TESTING
 
 
