@@ -35,7 +35,7 @@ class GroupAction(SimpleItem):
     def summary(self):
         roles = ', '.join(self.roles)
         return _(u"Create an user group ${groupid} with roles ${roles}",
-                 mapping=dict(role=[roles], groupid=self.groupid))
+                 mapping=dict(roles=roles, groupid=self.groupid))
 
 
 class GroupActionExecutor(object):
