@@ -17,14 +17,14 @@ from plone.stringinterp.interfaces import IStringInterpolator
 from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
 
-from sc.contentrules.group.interfaces import IGroupAction
+from sc.contentrules.group.interfaces import ICreateGroupAction
 from sc.contentrules.group import MessageFactory as _
 
 
 class GroupAction(SimpleItem):
     """The actual persistent implementation of the action element.
     """
-    implements(IGroupAction, IRuleElementData)
+    implements(ICreateGroupAction, IRuleElementData)
 
     groupid = ''
     grouptitle = ''
@@ -42,7 +42,7 @@ class GroupActionExecutor(object):
     """The executor for this action.
     """
     implements(IExecutable)
-    adapts(Interface, IGroupAction, Interface)
+    adapts(Interface, ICreateGroupAction, Interface)
 
     def __init__(self, context, element, event):
         self.context = context
@@ -90,9 +90,9 @@ class GroupActionExecutor(object):
 
 
 class GroupAddForm(AddForm):
-    """An add form for group action.
+    """An add form for create group action.
     """
-    form_fields = form.FormFields(IGroupAction)
+    form_fields = form.FormFields(ICreateGroupAction)
     label = _(u"Add an action that creates an user group")
     description = _(u"Create an user group as a result of this action")
 
@@ -103,8 +103,8 @@ class GroupAddForm(AddForm):
 
 
 class GroupEditForm(EditForm):
-    """An edit form for group rule action.
+    """An edit form for create group rule action.
     """
-    form_fields = form.FormFields(IGroupAction)
+    form_fields = form.FormFields(ICreateGroupAction)
     label = _(u"Edit an action that creates an user group")
     description = _(u"Create an user group as a result of this action")
