@@ -45,7 +45,7 @@ class TestGroupAction(unittest.TestCase):
         element = getUtility(IRuleAction,
                              name='sc.contentrules.group.CreateGroup')
         self.assertEquals('sc.contentrules.group.CreateGroup',
-                           element.addview)
+                          element.addview)
         self.assertEquals('edit', element.editview)
         self.assertEquals(IObjectManager, element.for_)
         self.assertEquals(IObjectEvent, element.event)
@@ -59,7 +59,7 @@ class TestGroupAction(unittest.TestCase):
 
         adding = getMultiAdapter((rule, self.portal.REQUEST), name='+action')
         addview = getMultiAdapter((adding, self.portal.REQUEST),
-                                   name=element.addview)
+                                  name=element.addview)
 
         addview.createAndAdd(data={'groupid': 'Users',
                                    'grouptitle': 'Users of this portal',
@@ -86,7 +86,7 @@ class TestGroupAction(unittest.TestCase):
         e.roles = set(['Member', ])
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
-                              IExecutable)
+                             IExecutable)
         self.assertEquals(True, ex())
         group = self.gt.getGroupById(e.groupid)
         self.failUnless(group)
