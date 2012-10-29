@@ -31,7 +31,7 @@ class GroupAction(SimpleItem):
     @property
     def summary(self):
         roles = ', '.join(self.roles)
-        return _(u"Create a group ${groupid} with roles ${roles}",
+        return _(u"Create an user group ${groupid} with roles ${roles}",
                  mapping=dict(role=[roles], groupid=self.groupid))
 
 
@@ -60,7 +60,8 @@ class GroupActionExecutor(object):
         # and receive a Group_ContentTitle
         groupid = interpolator(groupid).strip()
         if gt.getGroupById(groupid):
-            self.error(obj, _(u'A group with the same id already exists.'))
+            self.error(obj,
+                       _(u'An user group with the same id already exists.'))
             return False
         grouptitle = self.element.grouptitle
         grouptitle = interpolator(grouptitle).strip()
@@ -79,8 +80,9 @@ class GroupActionExecutor(object):
         request = getattr(self.context, 'REQUEST', None)
         if request is not None:
             groupid = self.element.groupid
-            message = _(u"Unable to create group with id ${groupid}: ${error}",
-                          mapping={'groupid': groupid, 'error': error})
+            message = _(u"Unable to create user group with id "
+                        u"${groupid}: ${error}",
+                        mapping={'groupid': groupid, 'error': error})
             IStatusMessage(request).addStatusMessage(message, type="error")
 
 
@@ -88,10 +90,8 @@ class GroupAddForm(AddForm):
     """An add form for group action.
     """
     form_fields = form.FormFields(IGroupAction)
-    label = _(u"Add an action to create a group")
-    description = _(u"An action that creates a group based on \
-                      an object.")
-    form_name = _(u"Configure element")
+    label = _(u"Add an action that creates an user group")
+    description = _(u"Create an user group as a result of this action")
 
     def create(self, data):
         a = GroupAction()
@@ -103,7 +103,5 @@ class GroupEditForm(EditForm):
     """An edit form for group rule action.
     """
     form_fields = form.FormFields(IGroupAction)
-    label = _(u"Edit an action to create a group")
-    description = _(u"An action that creates a group based on \
-                      an object.")
-    form_name = _(u"Configure element")
+    label = _(u"Edit an action that creates an user group")
+    description = _(u"Create an user group as a result of this action")
