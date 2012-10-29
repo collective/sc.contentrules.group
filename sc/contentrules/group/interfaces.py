@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import re
-from zope.interface import implements
 from zope.interface import Interface
 from zope import schema
 
