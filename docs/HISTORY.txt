@@ -4,7 +4,9 @@ Changelog
 1.0b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+* Update translations [ericof]
+
+* Fix packaging [ericof]
 
 
 1.0b1 (2012-10-30)
