@@ -1,15 +1,18 @@
 # Héctor Velarde <hector.velarde@gmail.com>, 2011.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.contentrules.group\n"
 "POT-Creation-Date: 2012-10-29 16:51+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2012-11-08 22:35-0430\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: Leonardo J. Caballero G.\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
 "Language-Code: es\n"
 "Language-Name: Español\n"
 "Preferred-Encodings: utf-8 latin1\n"
@@ -18,35 +21,36 @@ msgstr ""
 
 #: sc/contentrules/group/actions/create.py:96
 msgid "Add an action that creates an user group"
-msgstr ""
+msgstr "Añadir una acción que crea un grupo de usuario"
 
 #: sc/contentrules/group/actions/remove.py:91
 msgid "Add an action that removes an existing user group"
-msgstr ""
+msgstr "Añadir una acción que remueve un grupo de usuario existente"
 
 #: sc/contentrules/group/actions/create.py:67
 msgid "An user group with the same id already exists."
-msgstr ""
+msgstr "Un grupo de usuario con el mismo id ya existe."
 
 #: sc/contentrules/group/actions/create.py:37
 msgid "Create an user group ${groupid} with roles ${roles}"
-msgstr ""
+msgstr "Crear un grupo de usuario ${groupid} con roles ${roles}"
 
 #: sc/contentrules/group/actions/create.py:97
 msgid "Create an user group as a result of this action"
-msgstr ""
+msgstr "Crear un grupo de usuario como resultado de esta acción"
 
 #: sc/contentrules/group/actions/create.py:109
 msgid "Edit an action that creates an user group"
-msgstr ""
+msgstr "Editar una acción que crea un grupo de usuario"
 
 #: sc/contentrules/group/actions/remove.py:104
 msgid "Edit an action that removes an existing user group"
-msgstr ""
+msgstr "Editar una acción que remueve un grupo de usuario existente"
 
 #: sc/contentrules/group/interfaces.py:29
 msgid "Global roles to be assigned to the user group created by this action."
 msgstr ""
+"Roles globales a ser asignadas al grupo de usuario creado por esta acción."
 
 #: sc/contentrules/group/interfaces.py:14
 msgid "Group Id"
@@ -59,22 +63,31 @@ msgstr "Título del grupo"
 #: sc/contentrules/group/interfaces.py:15
 msgid "Please inform the id for the usergroup to be created by this action. Use  ${title} in this field to use the content title in the Group Id."
 msgstr ""
+"Por favor, informe el id para el grupo de usuario a ser creado por esta "
+"acción. Use  ${title} en este campo para ser usado en titulo del contenido "
+"en el Id del Grupo."
 
 #: sc/contentrules/group/interfaces.py:40
 msgid "Please inform the id for the usergroup to be removed by this action. Use  ${title} in this field to use the content title in the Group Id."
 msgstr ""
+"Por favor, informe el id para el grupo de usuario a ser removido por esta "
+"acción. Use  ${title} en este campo para ser usado en titulo del contenido "
+"en el Id del Grupo."
 
 #: sc/contentrules/group/interfaces.py:22
 msgid "Please inform the title for the user group to be created by this action. Use ${title} in here to have the content title in the Group Title."
 msgstr ""
+"Por favor, informe el titulo para el grupo de usuario a ser creado por esta "
+"acción. Use  ${title} en este campo para ser usado en titulo del contenido "
+"en el Titulo del Grupo."
 
 #: sc/contentrules/group/actions/remove.py:92
 msgid "Remove an user group as a result of this action"
-msgstr ""
+msgstr "Remueve un grupo de usuario como resultado de esta acción"
 
 #: sc/contentrules/group/actions/remove.py:34
 msgid "Remove an user group with id ${groupid}"
-msgstr ""
+msgstr "Remover un grupo de usuario con el id ${groupid}"
 
 #: sc/contentrules/group/interfaces.py:28
 msgid "Roles"
@@ -82,13 +95,14 @@ msgstr "Roles"
 
 #: sc/contentrules/group/actions/remove.py:63
 msgid "There is no user group with id ${groupid}"
-msgstr ""
+msgstr "No hay ningún grupo de usuario con el id ${groupid}"
 
 #: sc/contentrules/group/actions/create.py:86
 msgid "Unable to create user group with id ${groupid}: ${error}"
 msgstr ""
+"Deshabilitado para crear grupo de usuario con el id ${groupid}: ${error}"
 
 #: sc/contentrules/group/actions/remove.py:81
 msgid "Unable to remove user group with id ${groupid}: ${error}"
 msgstr ""
-
+"Deshabilitado para remover grupo de usuario con el id ${groupid}: ${error}"
