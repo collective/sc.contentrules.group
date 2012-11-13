@@ -10,7 +10,7 @@ Changelog
 
 
 1.0b1 (2012-10-30)
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 * Add an action to remove existing user groups [ericof]
 
