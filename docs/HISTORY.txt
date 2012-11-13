@@ -1,7 +1,7 @@
 Changelog
 ----------------
 
-1.0b2 (unreleased)
+1.0b2 (2012-11-13)
 ^^^^^^^^^^^^^^^^^^
 
 * Update translations [ericof]
