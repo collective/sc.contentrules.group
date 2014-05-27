@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 from setuptools import setup, find_packages
+
 import os
 
-version = open(os.path.join("src", "sc", "contentrules",
-                            "group", "version.txt")).read().strip()
+version = '1.0b3.dev0'
 
 long_description = (open("README.txt").read() + "\n" +
                     open(os.path.join("docs", "INSTALL.txt")).read() + "\n" +
@@ -18,10 +18,8 @@ setup(name='sc.contentrules.group',
           "Development Status :: 5 - Production/Stable",
           "Environment :: Web Environment",
           "Framework :: Plone",
-          "Framework :: Plone :: 3.3",
-          "Framework :: Plone :: 4.0",
-          "Framework :: Plone :: 4.1",
           "Framework :: Plone :: 4.2",
+          "Framework :: Plone :: 4.3",
           "Framework :: Zope2",
           "Framework :: Zope3",
           "Intended Audience :: Developers",
@@ -54,8 +52,10 @@ setup(name='sc.contentrules.group',
               'setuptools-flakes',
           ],
           'test': [
-              'interlude',
-              'plone.app.testing'
+              'Pillow',
+              'plone.app.testing',
+              'plone.browserlayer',
+              'plone.testing',
           ],
       },
       entry_points="""
