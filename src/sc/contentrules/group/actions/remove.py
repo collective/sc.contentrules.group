@@ -48,7 +48,7 @@ class GroupActionExecutor(object):
             return False
 
         groupid = self.element.groupid
-        #User interpolator to process principal information
+        # User interpolator to process principal information
         # This way it's possible to set Group_${title}
         # and receive a Group_ContentTitle
         groupid = interpolator(groupid).strip()

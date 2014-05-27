@@ -32,7 +32,7 @@ class TestGroupAction(unittest.TestCase):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.portal.invokeFactory('Folder', 'test-folder')
-        #setRoles(self.portal, TEST_USER_ID, ['Member'])
+        # setRoles(self.portal, TEST_USER_ID, ['Member'])
         self.folder = self.portal['test-folder']
         self.gt = self.portal.portal_groups
         self.gt.addGroup('Fav Customer', title='Our Fav Customer', roles=())
