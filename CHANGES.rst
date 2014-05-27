@@ -4,6 +4,9 @@ Changelog
 1.0b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+* Fix package dependencies.
+  [hvelarde]
+
 * Coveralls support [ericof]
 
 * Implement better QA for code [ericof]
