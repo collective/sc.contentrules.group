@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
 from OFS.interfaces import IObjectManager
 from plone.app.contentrules.rule import Rule
 from plone.app.testing import setRoles
