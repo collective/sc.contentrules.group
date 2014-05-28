@@ -37,48 +37,48 @@ class TestGroupAction(unittest.TestCase):
         self.gt.addGroup('Fav Customer', title='Our Fav Customer', roles=())
 
     def testRegistered(self):
-        element = getUtility(IRuleAction,
-                             name='sc.contentrules.group.RemoveGroup')
-        self.assertEquals('sc.contentrules.group.RemoveGroup',
-                          element.addview)
-        self.assertEquals('edit', element.editview)
-        self.assertEquals(IObjectManager, element.for_)
-        self.assertEquals(IObjectEvent, element.event)
+        element = getUtility(
+            IRuleAction, name='sc.contentrules.group.RemoveGroup')
+        self.assertEqual(
+            'sc.contentrules.group.RemoveGroup', element.addview)
+        self.assertEqual('edit', element.editview)
+        self.assertEqual(IObjectManager, element.for_)
+        self.assertEqual(IObjectEvent, element.event)
 
     def testInvokeAddView(self):
-        element = getUtility(IRuleAction,
-                             name='sc.contentrules.group.RemoveGroup')
+        element = getUtility(
+            IRuleAction, name='sc.contentrules.group.RemoveGroup')
         storage = getUtility(IRuleStorage)
         storage[u'foo'] = Rule()
         rule = self.portal.restrictedTraverse('++rule++foo')
 
         adding = getMultiAdapter((rule, self.portal.REQUEST), name='+action')
-        addview = getMultiAdapter((adding, self.portal.REQUEST),
-                                  name=element.addview)
+        addview = getMultiAdapter(
+            (adding, self.portal.REQUEST), name=element.addview)
 
         addview.createAndAdd(data={'groupid': 'Users'})
 
         e = rule.actions[0]
-        self.failUnless(isinstance(e, GroupAction))
-        self.assertEquals('Users', e.groupid)
+        self.assertTrue(isinstance(e, GroupAction))
+        self.assertEqual('Users', e.groupid)
 
     def testInvokeEditView(self):
-        element = getUtility(IRuleAction,
-                             name='sc.contentrules.group.RemoveGroup')
+        element = getUtility(
+            IRuleAction, name='sc.contentrules.group.RemoveGroup')
         e = GroupAction()
-        editview = getMultiAdapter((e, self.folder.REQUEST),
-                                   name=element.editview)
-        self.failUnless(isinstance(editview, GroupEditForm))
+        editview = getMultiAdapter(
+            (e, self.folder.REQUEST), name=element.editview)
+        self.assertTrue(isinstance(editview, GroupEditForm))
 
     def testExecute(self):
         e = GroupAction()
         e.groupid = 'Fav Customer'
 
-        ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
-                             IExecutable)
-        self.assertEquals(True, ex())
+        ex = getMultiAdapter(
+            (self.portal, e, DummyEvent(self.folder)), IExecutable)
+        self.assertTrue(ex())
         group = self.gt.getGroupById(e.groupid)
-        self.failIf(group)
+        self.assertFalse(group)
 
     def testExecuteInterp(self):
         # Setup scenario
@@ -87,26 +87,25 @@ class TestGroupAction(unittest.TestCase):
         e = GroupAction()
         e.groupid = '${title}'
 
-        ex = getMultiAdapter((self.portal, e, DummyEvent(folder)),
-                             IExecutable)
-        self.assertEquals(True, ex())
+        ex = getMultiAdapter(
+            (self.portal, e, DummyEvent(folder)), IExecutable)
+        self.assertTrue(ex())
         group = self.gt.getGroupById(folder.Title())
-        self.failIf(group)
+        self.assertFalse(group)
 
     def testExecuteWithoutGroupManagementPlugin(self):
         ''' No group management plugins enabled '''
         from Products.PlonePAS.interfaces.group import IGroupManagement
         # Disable group management plugins
         acl_users = getToolByName(self.portal, 'acl_users')
-        acl_users.plugins.deactivatePlugin(IGroupManagement,
-                                           'source_groups')
+        acl_users.plugins.deactivatePlugin(IGroupManagement, 'source_groups')
         # Execute action
         e = GroupAction()
         e.groupid = 'Fav Customer'
 
-        ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
-                             IExecutable)
-        self.assertEquals(False, ex())
+        ex = getMultiAdapter(
+            (self.portal, e, DummyEvent(self.folder)), IExecutable)
+        self.assertFalse(ex())
 
     def testExecuteWithoutGroupTool(self):
         ''' Test what happens if portal_groups is not available '''
@@ -117,26 +116,22 @@ class TestGroupAction(unittest.TestCase):
         e = GroupAction()
         e.groupid = 'New Group'
 
-        ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
-                             IExecutable)
-        self.assertEquals(False, ex())
+        ex = getMultiAdapter(
+            (self.portal, e, DummyEvent(self.folder)), IExecutable)
+        self.assertFalse(ex())
 
     def testActionSummary(self):
         e = GroupAction()
         e.groupid = '${title}'
         summary = u'Remove an user group with id ${groupid}'
-        self.assertEquals(summary, e.summary)
+        self.assertEqual(summary, e.summary)
 
     def testExecuteWithError(self):
         ''' Try to remove a non existent group'''
         e = GroupAction()
         e.groupid = 'Non Existent Group'
 
-        ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
-                             IExecutable)
+        ex = getMultiAdapter(
+            (self.portal, e, DummyEvent(self.folder)), IExecutable)
 
-        self.assertEquals(False, ex())
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)
+        self.assertFalse(ex())
