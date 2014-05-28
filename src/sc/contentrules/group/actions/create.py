@@ -23,12 +23,12 @@ class GroupAction(SimpleItem):
     groupid = ''
     grouptitle = ''
     roles = ''
-    element = "sc.contentrules.group.CreateGroup"
+    element = 'sc.contentrules.group.CreateGroup'
 
     @property
     def summary(self):
         roles = ', '.join(self.roles)
-        return _(u"Create an user group ${groupid} with roles ${roles}",
+        return _(u'Create an user group ${groupid} with roles ${roles}',
                  mapping=dict(roles=roles, groupid=self.groupid))
 
 
@@ -77,18 +77,18 @@ class GroupActionExecutor(object):
         request = getattr(self.context, 'REQUEST', None)
         if request is not None:
             groupid = self.element.groupid
-            message = _(u"Unable to create user group with id "
-                        u"${groupid}: ${error}",
+            message = _(u'Unable to create user group with id '
+                        u'${groupid}: ${error}',
                         mapping={'groupid': groupid, 'error': error})
-            IStatusMessage(request).addStatusMessage(message, type="error")
+            IStatusMessage(request).addStatusMessage(message, type='error')
 
 
 class GroupAddForm(AddForm):
     """An add form for create group action.
     """
     form_fields = form.FormFields(ICreateGroupAction)
-    label = _(u"Add an action that creates an user group")
-    description = _(u"Create an user group as a result of this action")
+    label = _(u'Add an action that creates an user group')
+    description = _(u'Create an user group as a result of this action')
 
     def create(self, data):
         a = GroupAction()
@@ -100,5 +100,5 @@ class GroupEditForm(EditForm):
     """An edit form for create group rule action.
     """
     form_fields = form.FormFields(ICreateGroupAction)
-    label = _(u"Edit an action that creates an user group")
-    description = _(u"Create an user group as a result of this action")
+    label = _(u'Edit an action that creates an user group')
+    description = _(u'Create an user group as a result of this action')

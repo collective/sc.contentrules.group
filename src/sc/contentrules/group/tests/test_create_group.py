@@ -110,7 +110,7 @@ class TestGroupAction(unittest.TestCase):
         e.groupid = '${title}'
         e.grouptitle = 'Group of Contributors for folder ${title}'
         e.roles = set(['Contributor', ])
-        summary = u"Create an user group ${groupid} with roles ${roles}"
+        summary = u'Create an user group ${groupid} with roles ${roles}'
         self.assertEquals(summary, e.summary)
 
     def testExecuteWithoutGroupManagementPlugin(self):

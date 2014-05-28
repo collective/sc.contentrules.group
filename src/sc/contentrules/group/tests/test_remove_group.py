@@ -124,7 +124,7 @@ class TestGroupAction(unittest.TestCase):
     def testActionSummary(self):
         e = GroupAction()
         e.groupid = '${title}'
-        summary = u"Remove an user group with id ${groupid}"
+        summary = u'Remove an user group with id ${groupid}'
         self.assertEquals(summary, e.summary)
 
     def testExecuteWithError(self):

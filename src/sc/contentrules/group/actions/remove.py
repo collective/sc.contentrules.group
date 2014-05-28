@@ -21,11 +21,11 @@ class GroupAction(SimpleItem):
     implements(IRemoveGroupAction, IRuleElementData)
 
     groupid = ''
-    element = "sc.contentrules.group.RemoveGroup"
+    element = 'sc.contentrules.group.RemoveGroup'
 
     @property
     def summary(self):
-        return _(u"Remove an user group with id ${groupid}",
+        return _(u'Remove an user group with id ${groupid}',
                  mapping=dict(groupid=self.groupid))
 
 
@@ -72,18 +72,18 @@ class GroupActionExecutor(object):
         request = getattr(self.context, 'REQUEST', None)
         if request is not None:
             groupid = self.element.groupid
-            message = _(u"Unable to remove user group with id "
-                        u"${groupid}: ${error}",
+            message = _(u'Unable to remove user group with id '
+                        u'${groupid}: ${error}',
                         mapping={'groupid': groupid, 'error': error})
-            IStatusMessage(request).addStatusMessage(message, type="error")
+            IStatusMessage(request).addStatusMessage(message, type='error')
 
 
 class GroupAddForm(AddForm):
     """An add form for remove group action.
     """
     form_fields = form.FormFields(IRemoveGroupAction)
-    label = _(u"Add an action that removes an existing user group")
-    description = _(u"Remove an user group as a result of this action")
+    label = _(u'Add an action that removes an existing user group')
+    description = _(u'Remove an user group as a result of this action')
 
     def create(self, data):
         a = GroupAction()
@@ -95,5 +95,5 @@ class GroupEditForm(EditForm):
     """An edit form for remove group rule action.
     """
     form_fields = form.FormFields(IRemoveGroupAction)
-    label = _(u"Edit an action that removes an existing user group")
-    description = _(u"Remove an user group as a result of this action")
+    label = _(u'Edit an action that removes an existing user group')
+    description = _(u'Remove an user group as a result of this action')
