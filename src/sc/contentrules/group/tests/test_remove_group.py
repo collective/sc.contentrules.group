@@ -10,7 +10,8 @@ from Products.CMFCore.utils import getToolByName
 from sc.contentrules.group.actions.remove import GroupAction
 from sc.contentrules.group.actions.remove import GroupEditForm
 from sc.contentrules.group.testing import INTEGRATION_TESTING
-from zope.component import getUtility, getMultiAdapter
+from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.component.interfaces import IObjectEvent
 from zope.interface import implements
 
